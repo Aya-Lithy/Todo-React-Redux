@@ -4,6 +4,7 @@ import {
   FETCH_TODOS_FAILURE,
   ADD_TODO,
   DELETE_TODO,
+  TOGGLE_TODO,
 } from "./todoTypes";
 
 const initialState = {
@@ -47,6 +48,18 @@ const todoReducer = (state = initialState, action) => {
         todos: state.todos.filter((todo) => todo.id !== action.payload),
         error: "",
       };
+
+    case TOGGLE_TODO:
+      return {
+        loading: false,
+        todos: state.todos.map((todo) => {
+          return todo.id == action.payload
+            ? { ...todo, completed: !todo.completed }
+            : { ...todo };
+        }),
+        error: "",
+      };
+
     default:
       return state;
   }

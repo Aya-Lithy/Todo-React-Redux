@@ -5,6 +5,7 @@ import {
   FETCH_TODOS_FAILURE,
   DELETE_TODO,
   ADD_TODO,
+  TOGGLE_TODO,
 } from "./todoTypes";
 
 let nextTodoId = 201;
@@ -34,6 +35,7 @@ export const addTodo = (title) => {
     type: ADD_TODO,
     payload: {
       id: ++nextTodoId,
+      completed: false,
       title,
     },
   };
@@ -42,6 +44,13 @@ export const addTodo = (title) => {
 export const deleteTodo = (id) => {
   return {
     type: DELETE_TODO,
+    payload: id,
+  };
+};
+
+export const toggleTodo = (id) => {
+  return {
+    type: TOGGLE_TODO,
     payload: id,
   };
 };
