@@ -3,6 +3,7 @@ import {
   FETCH_TODOS_SUCCESS,
   FETCH_TODOS_FAILURE,
   ADD_TODO,
+  DELETE_TODO,
 } from "./todoTypes";
 
 const initialState = {
@@ -40,6 +41,12 @@ const todoReducer = (state = initialState, action) => {
         error: "",
       };
 
+    case DELETE_TODO:
+      return {
+        loading: false,
+        todos: state.todos.filter((todo) => todo.id !== action.payload),
+        error: "",
+      };
     default:
       return state;
   }
